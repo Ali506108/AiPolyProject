@@ -1,0 +1,61 @@
+.chat-container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.messages {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  background: #fff;
+}
+
+.message {
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.message.user {
+  background: #d1e7dd;
+  text-align: right;
+}
+
+.message.ai {
+  background: #f8d7da;
+  text-align: left;
+}
+
+.image-container img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.input-container {
+  display: flex;
+  gap: 10px;
+}
+
+.input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn {
+  background: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn.logout {
+  background: #dc3545;
+  margin-bottom: 20px;
+}
