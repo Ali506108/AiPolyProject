@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: AiDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    image: openjdk:17
+    container_name: avai_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/AiDb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_APPLICATION_NAME: AVAI
+      SERVER_PORT: 7565
+      JWT_SECRET: NTNBNzNFNUYxQzRFMEEyRDNCNUYyRDc4NEU2QTFCNDIzRDZGMjQ3RDFGNkU1QzNBNTk2RDYzNUE3NTMyNzg1NXNvbWUtc2FsdC12YWx1ZQ==
+      TOGETHER_AI_URL: https://api.together.ai/v1
+      TOGETHER_AI_APIKEY: a906cae7180dfb5eb10f390c17bf1a3ec8584bae5084b8172bfb2323c0be4ea0
+    ports:
+      - "7565:7565"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
