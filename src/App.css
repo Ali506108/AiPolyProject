@@ -49,3 +49,9 @@ body {
     transform: rotate(360deg);
   }
 }
+.app-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fafafa 0%, #e9ecef 100%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 40px 20px;
+}

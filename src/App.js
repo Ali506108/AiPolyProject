@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Chat from "./components/Chat";
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem("token"));
-
-  const handleLogin = (token) => {
-    setToken(token); // Устанавливаем токен
-  };
-
   return (
-    <div className="app">
-      {token ? <Chat token={token} /> : <Login onLogin={handleLogin} />}
-    </div>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/chat" element={<Chat />} />
+      {/* Можно добавить и другие маршруты */}
+    </Routes>
   );
 }
 

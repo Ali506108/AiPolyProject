@@ -1,39 +1,151 @@
 .chat-container {
-  width: 600px;
-  margin: 0 auto;
+  width: 700px;
+  max-width: 90%;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  position: relative;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Шапка чата */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  margin: 0;
+  color: #333;
+}
+
+/* Список сообщений */
 .messages {
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 10px;
   height: 300px;
   overflow-y: auto;
-  margin-bottom: 20px;
-  background: #fff;
+  margin: 20px 0;
+  background: #f9f9f9;
+  position: relative;
 }
 
+/* Анимация появления/исчезновения (react-transition-group) */
+.fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 300ms ease-in-out;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+}
+
+/* Блок одного сообщения */
 .message {
   margin: 5px 0;
   padding: 10px;
   border-radius: 5px;
+  max-width: 60%;
+  line-height: 1.4;
+  word-wrap: break-word;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Сообщение пользователя */
 .message.user {
-  background: #d1e7dd;
+  background-color: #d1e7dd;
+  margin-left: auto;
   text-align: right;
 }
 
+/* Сообщение AI */
 .message.ai {
-  background: #f8d7da;
+  background-color: #f8d7da;
+  margin-right: auto;
   text-align: left;
+}
+
+.image-container {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .image-container img {
   max-width: 100%;
   border-radius: 10px;
+  margin-top: 10px;
+  transition: transform 0.3s;
+}
+.image-container img:hover {
+  transform: scale(1.02);
 }
 
+/* Модальное окно (большая картинка) */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  max-width: 80%;
+  max-height: 80%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: scaleIn 0.3s ease forwards;
+}
+
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ключевые кадры для модалки */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Блок ввода сообщения */
 .input-container {
   display: flex;
   gap: 10px;
@@ -41,21 +153,35 @@
 
 .input {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
 }
 
 .btn {
-  background: #007bff;
-  color: white;
-  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn.send-btn {
+  font-weight: 500;
+}
+
+.btn:hover {
+  background-color: #0056b3;
 }
 
 .btn.logout {
-  background: #dc3545;
-  margin-bottom: 20px;
+  background-color: #dc3545;
+}
+
+.btn.logout:hover {
+  background-color: #c2333e;
 }
